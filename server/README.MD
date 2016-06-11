@@ -9,3 +9,9 @@ Google Geocoding API free usage limit: 2500 requests/day,
 Movies locations in database: 1241
 
 Ingest script could be run once a week. It would incurr in a API usage limit when movies locations number grows. In that case it would be good to have the ingest script only obtain location informations incrementally. "Nice to have" for the current scope of the project.
+
+- Add assumption that actors names by location are better organized by movie
+
+- Add assumption that movies database does not grow too much too fast, better to digest upfront
+
+-Add assumption collection will never grow beyond 50000

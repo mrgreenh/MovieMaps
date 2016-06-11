@@ -1,5 +1,6 @@
 import os
 from pymongo import MongoClient
+import logging
 
 def get_db():
     MONGO_URL = os.environ.get('MONGO_URL')
