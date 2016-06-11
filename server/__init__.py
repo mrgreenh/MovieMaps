@@ -16,5 +16,5 @@ mongo = PyMongo(app)
 
 @app.route('/')
 def index():
-    resp = make_response("yo hey waddup", 200)
+    resp = make_response(dumps(mongo.db.test.find_one_or_404({"_id": ObjectId("575b7a586b04e2520a5c51fb")}).get("value")), 200)
     return resp
