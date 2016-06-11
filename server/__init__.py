@@ -1,5 +1,5 @@
 import os
-from flask import Flask
+from flask import Flask, render_template
 from flask.ext.pymongo import PyMongo
 from bson.json_util import dumps
 from bson.objectid import ObjectId
@@ -16,5 +16,5 @@ mongo = PyMongo(app)
 
 @app.route('/')
 def index():
-    resp = make_response(dumps(mongo.db.test.find_one({"_id": ObjectId("575b7a586b04e2520a5c51fb")}).get("value")), 200)
-    return resp
+    #resp = make_response(dumps(mongo.db.test.find_one({"_id": ObjectId("575a6aac94c78c5d1895db9a")}).get("value")), 200)
+    return render_template('index.html')
