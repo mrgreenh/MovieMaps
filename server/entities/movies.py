@@ -1,14 +1,17 @@
 from sets import Set
 import requests
 import logging
-from db_utils import get_db
+from server.db_utils import get_db
+from server.entities.base_entity import BaseEntity
 
-class Movie:
-    '''
+class Movie(BaseEntity):
+    """
     Class representing a movie.
     It accepts either data from our MongoDb collection or from the original data source.
-    '''
+    """
+    collection = "movies"
     def __init__(self, raw_data):
+        super(Movie, self).__init__(raw_data)
         raw_locations = raw_data.get("locations")
         self.locations = Set(raw_locations) if type(raw_locations) == list else Set()
         self.actors = Set(raw_data.get("actors"))
@@ -31,22 +34,23 @@ class Movie:
                 self.actors.add(raw_location_data.get(k))
 
     def to_dict(self):
-        return {
-            "locations": list(self.locations),
-            "actors": list(self.actors),
-            "title": self.title,
-            "writer": self.writer,
-            "director": self.director,
-            "production_company": self.production_company,
-            "distributor": self.distributor
-        }
+        result = super(Movie, self).to_dict()
+        result.update({
+                    "locations": list(self.locations),
+                    "actors": list(self.actors),
+                    "title": self.title,
+                    "writer": self.writer,
+                    "director": self.director,
+                    "production_company": self.production_company,
+                    "distributor": self.distributor
+                })
+        return result
         
-
 def ingest_movies_data():
-    '''
+    """
     A movies-normalized collection will be built to store movies information.
     A normalized list of locations strings will be returned.
-    '''
+    """
     logging.info('Connecting to movies data source')
     #50000 is the max number of items retrievable at a time
     request = requests.get('https://data.sfgov.org/resource/wwmu-gmzc.json?$limit=50000')

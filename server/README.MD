@@ -15,3 +15,5 @@ Ingest script could be run once a week. It would incurr in a API usage limit whe
 - Add assumption that movies database does not grow too much too fast, better to digest upfront
 
 -Add assumption collection will never grow beyond 50000
+
+- mention text index added on movie titles. Mention how adding the same index on locations makes movies searchable by locations too.

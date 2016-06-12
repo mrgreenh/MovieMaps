@@ -1,8 +1,10 @@
 import React from 'react';
 import {connect} from 'alt-react';
-import AppStore from '../stores/AppStore.js';
-import AppActions from '../actions/AppActions.js';
+import MoviesStore from '../stores/MoviesStore.js';
+import MoviesActions from '../actions/MoviesActions.js';
 import AutoComplete from 'material-ui/AutoComplete';
+import StoresAlert from './StoresAlert.js';
+import {GoogleMapLoader, GoogleMap, Marker} from "react-google-maps";
 
 /**
 *The root component containing the rest of the application
@@ -11,7 +13,7 @@ import AutoComplete from 'material-ui/AutoComplete';
 class App extends React.Component{
 
     onSearchChange(newValue){
-        AppStore.searchMovies(newValue);
+        this.props.searchMovies(newValue);
     }
 
     render(){
@@ -19,12 +21,33 @@ class App extends React.Component{
             <div className="component-app">
                 <h1>MovieMaps</h1>
                 <AutoComplete
-                  hintText="E.g. Killbill"
-                  dataSource={["something", "something1", "something2", "something3", "something4", "something5", "something6"]}
+                  hintText="E.g. Forrest"
+                  dataSource={this.props.autocompletion}
                   onUpdateInput={this.onSearchChange}
                   floatingLabelText="Search for a movie!"
                   fullWidth={true}
+                  onNewRequest={this.props.addMovie}
                   filter={AutoComplete.noFilter}/>
+                <section style={{height: "500px"}}>
+                  <GoogleMapLoader
+                    containerElement={
+                      <div
+                        style={{
+                          height: "100%",
+                        }}
+                      ></div>
+                    }
+                    googleMapElement={
+                      <GoogleMap
+                        ref={(map) => console.log(map)}
+                        defaultZoom={3}
+                        defaultCenter={{ lat: -25.363882, lng: 131.044922 }}
+                        onClick={function(){}}
+                      >
+                      </GoogleMap>
+                    }/>
+                </section>
+                <StoresAlert />
             </div>
         );
     }
@@ -44,11 +67,12 @@ React.propTypes = {
 }
 
 export default connect(App, {
-    listenTo() { return [AppStore]; },
-
+    listenTo() { return [MoviesStore]; },
     getProps(){
-        return{
-            searchValue: AppStore.inputValue
+        return {
+            autocompletion: MoviesStore.state.autocompletion,
+            searchMovie: MoviesStore.searchMovie,
+            addMovie: MoviesActions.addMovie
         }
     }
 });

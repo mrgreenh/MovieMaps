@@ -1,20 +1,32 @@
 import os
-from flask import Flask, render_template
-from flask.ext.pymongo import PyMongo
-from bson.json_util import dumps
-from bson.objectid import ObjectId
-from flask import make_response
+from flask import Flask, render_template, make_response, request, jsonify
+from db_utils import get_db
+from entities.movies import Movie
 
-MONGO_URL = os.environ.get('MONGO_URL')
-if not MONGO_URL:
-    MONGO_URL = "mongodb://localhost:27017/test";
 
 app = Flask(__name__)
 
-app.config['MONGO_URI'] = MONGO_URL
-mongo = PyMongo(app)
-
 @app.route('/')
 def index():
-    #resp = make_response(dumps(mongo.db.test.find_one({"_id": ObjectId("575a6aac94c78c5d1895db9a")}).get("value")), 200)
-    return render_template('index.html')
+    #Want to use a different one locally
+    GOOGLE_MAPS_KEY = os.environ.get('GOOGLE_MAPS_KEY')
+    if not GOOGLE_MAPS_KEY:
+        raise Exception("Missing google maps key")
+    return render_template('index.html', google_maps_key=GOOGLE_MAPS_KEY)
+
+@app.route('/movies/search')
+def search_movies():
+    keyword = request.args.get("keyword")
+    if keyword is not None and len(keyword):
+        keywords = keyword.split(" ")
+        or_clause = []
+        for keyword in keywords:
+            or_clause.append({
+                    "title": {"$regex": ".*"+keyword+".*", "$options": "i"}
+                })
+        query = { "$or": or_clause }
+        print query
+        results = Movie.find(query, limit=10)
+        print results
+        dict_results = [result.to_dict() for result in results]
+        return jsonify(dict_results)
