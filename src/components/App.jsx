@@ -13,7 +13,7 @@ import {GoogleMapLoader, GoogleMap, Marker} from "react-google-maps";
 class App extends React.Component{
 
     onSearchChange(newValue){
-        this.props.searchMovies(newValue);
+        this.props.searchMovie(newValue);
     }
 
     render(){

@@ -20435,7 +20435,7 @@
 	    (0, _createClass3.default)(App, [{
 	        key: 'onSearchChange',
 	        value: function onSearchChange(newValue) {
-	            this.props.searchMovies(newValue);
+	            this.props.searchMovie(newValue);
 	        }
 	    }, {
 	        key: 'render',
