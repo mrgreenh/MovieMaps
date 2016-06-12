@@ -15,6 +15,9 @@ class MoviesStore {
         this.bindAction(AppActions.DISMISS_ERROR, this.onDismissError);
         this.bindActions(MoviesActions);
         this.registerAsync(MovieSources);
+        this.exportPublicMethods({
+            getAutocompletionValues: this.getAutocompletionValues
+        });
     }
 
     onLoading(){
@@ -38,7 +41,13 @@ class MoviesStore {
     }
 
     onAddMovie(){
-        
+
+    }
+
+    //Getters
+
+    getAutocompletionValues(){
+        return this.state.error ? [] : this.state.autocompletion;
     }
 
 }

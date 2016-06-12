@@ -3,6 +3,11 @@ var path = require('path');
 var nodeModulesPath = path.resolve(__dirname, 'node_modules');
 var ExtractTextPlugin = require("extract-text-webpack-plugin");
 
+var plugins = [
+        new ExtractTextPlugin("./server/static/main.css"),
+        new Webpack.optimize.UglifyJsPlugin({compress: { warnings: false } })
+    ];
+
 var config = {
 
     // We change to normal source mapping
@@ -25,9 +30,7 @@ var config = {
             loader: ExtractTextPlugin.extract("style-loader", "css-loader?sourceMap!sass-loader?sourceMap")
         }]
     },
-    plugins: [
-        new ExtractTextPlugin("./server/static/main.css")
-    ]
+    plugins: plugins
 };
 
 module.exports = config;

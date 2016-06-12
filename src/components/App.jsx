@@ -1,4 +1,5 @@
 import React from 'react';
+import debounce from 'lodash.debounce';
 import {connect} from 'alt-react';
 import MoviesStore from '../stores/MoviesStore.js';
 import MoviesActions from '../actions/MoviesActions.js';
@@ -66,8 +67,8 @@ export default connect(App, {
     listenTo() { return [MoviesStore]; },
     getProps(){
         return {
-            autocompletion: MoviesStore.state.autocompletion,
-            searchMovies: MoviesStore.searchMovies,
+            autocompletion: MoviesStore.getAutocompletionValues(),
+            searchMovies: debounce(MoviesStore.searchMovies, 500),
             addMovie: MoviesActions.addMovie
         }
     }
