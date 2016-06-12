@@ -1,4 +1,45 @@
 body {
-  background-color: #fff; }
+  background-color: #fff;
+  margin: 0px;
+  padding: 0px; }
+.component-app {
+  position: fixed;
+  top: 0px;
+  bottom: 0px;
+  width: 100%;
+  box-sizing: content-box;
+  display: flex;
+  flex-direction: row;
+  align-items: stretch; }
+  .component-app .right-side-container {
+    flex-grow: 1;
+    position: relative; }
+    .component-app .right-side-container h1 {
+      position: absolute;
+      top: 0px; }
+.component-search-pane {
+  box-sizing: content-box;
+  flex-basis: 300px;
+  display: flex;
+  flex-direction: column; }
+  .component-search-pane .search-field {
+    width: 90%;
+    margin: 0px auto;
+    box-sizing: content-box;
+    flex-basis: 72px;
+    height: 72px; }
+  .component-search-pane .movies-list-container {
+    flex-grow: 1;
+    overflow: scroll; }
+.component-legend {
+  position: absolute;
+  bottom: 0px;
+  height: 50px;
+  width: 100%; }
+.component-header {
+  position: absolute;
+  top: 0px;
+  height: 50px;
+  width: 100%; }
 
 /*# sourceMappingURL=main.css.map*/

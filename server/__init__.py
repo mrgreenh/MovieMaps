@@ -1,7 +1,10 @@
+import json
 import os
+import pymongo
 from flask import Flask, render_template, make_response, request, jsonify
 from db_utils import get_db
 from entities.movies import Movie
+from entities.locations import Location
 
 
 app = Flask(__name__)
@@ -17,15 +20,33 @@ def index():
 @app.route('/movies/search')
 def search_movies():
     keyword = request.args.get("keyword")
-    dict_results = []
+    page_arg = request.args.get("page")
+    page = int(page_arg) if page_arg else None
+    query = {}
     if keyword is not None and len(keyword):
         keywords = keyword.split(" ")
-        or_clause = []
+        and_clause = []
         for keyword in keywords:
-            or_clause.append({
+            and_clause.append({
                     "title": {"$regex": ".*"+keyword+".*", "$options": "i"}
                 })
+        query = { "$and": and_clause }
+    results = Movie.find(query, page=page)
+    dict_results = [result.to_dict() for result in results]
+    return jsonify(dict_results)
+
+@app.route('/movie/<movie_id>/locations/list')
+def list_movie_locations(movie_id):
+    movie = Movie.get(movie_id)
+    dict_results = []
+    if movie and movie.locations and len(movie.locations):
+        locations = movie.locations
+        or_clause = []
+        for location in locations:
+            or_clause.append({
+                    "search_string": location
+                })
         query = { "$or": or_clause }
-        results = Movie.find(query, limit=10)
+        results = Location.find(query)
         dict_results = [result.to_dict() for result in results]
     return jsonify(dict_results)

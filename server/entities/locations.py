@@ -2,11 +2,45 @@ import os
 import logging
 import requests
 import time
-from db_utils import get_db
+from server.db_utils import get_db
+from server.entities.base_entity import BaseEntity
+
+class Location(BaseEntity):
+    """
+    Class representing a location.
+    It accepts either data from our MongoDb collection or from the original data source.
+    """
+    collection = "locations"
+    def __init__(self, raw_data):
+        super(Location, self).__init__(raw_data)
+        self.search_string = raw_data.get("search_string")
+        self.geocoding = raw_data.get("geocoding")
+
+    @property
+    def lat(self):
+        return self.geocoding.get("geometry", {}).get("location", {}).get("lat")
+
+    @property
+    def lng(self):
+        return self.geocoding.get("geometry", {}).get("location", {}).get("lng")
+
+    def to_dict(self):
+        result = super(Location, self).to_dict()
+        result.update({
+                    "search_string": self.search_string,
+                    "lat": self.lat,
+                    "lng": self.lng
+                })
+        return result
+
+    @classmethod
+    def find(klass, *args, **kwargs):
+        kwargs["sort"] = "title"
+        return super(Location, klass).find(*args, **kwargs)
 
 LOCATION_STOP_WORDS = ["from", "to", "between", "and"]
 
-#TODO make locations class, sort code out a bit
+#TODO make locations class, sort code out to another file
 def ingest_locations_data(locations, limit=None):
     '''
     Will retrieve location information from Google, save it as {search_string, geocoding}.

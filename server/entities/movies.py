@@ -22,6 +22,7 @@ class Movie(BaseEntity):
         self.director = raw_data.get("director", None)
         self.production_company = raw_data.get("production_company", None)
         self.distributor = raw_data.get("distributor", None)
+        self.release_year = raw_data.get("release_year", None)
 
     def add_location(self, raw_location_data):
         if "locations" in raw_location_data:
@@ -42,10 +43,17 @@ class Movie(BaseEntity):
                     "writer": self.writer,
                     "director": self.director,
                     "production_company": self.production_company,
-                    "distributor": self.distributor
+                    "distributor": self.distributor,
+                    "release_year": self.release_year
                 })
         return result
+
+    @classmethod
+    def find(klass, *args, **kwargs):
+        kwargs["sort"] = "title"
+        return super(Movie, klass).find(*args, **kwargs)
         
+#TODO move out to other file
 def ingest_movies_data():
     """
     A movies-normalized collection will be built to store movies information.
@@ -73,6 +81,7 @@ def ingest_movies_data():
         movie.add_actors(location)
         movie.add_location(location)
         normalized_movies[location_title] = movie.to_dict()
+        del normalized_movies[location_title]["_id"]
 
         if location.get("locations") is not None:
             normalized_locations.add(location["locations"])

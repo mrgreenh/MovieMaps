@@ -7,5 +7,7 @@ export default alt.generateActions(
         "loading",
         "loadedSearchMatches",
         "loadingError",
-        "addMovie"
+        "changeSearchTerm",
+        "toggleMovie",
+        "loadedNewPage"
         );
