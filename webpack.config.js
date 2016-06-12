@@ -5,7 +5,7 @@ var ExtractTextPlugin = require("extract-text-webpack-plugin");
 
 var plugins = [
         new ExtractTextPlugin("./server/static/main.css"),
-        new Webpack.optimize.UglifyJsPlugin({compress: { warnings: false } })
+//        new Webpack.optimize.UglifyJsPlugin({compress: { warnings: false } })
     ];
 
 var config = {

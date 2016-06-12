@@ -17,6 +17,7 @@ def index():
 @app.route('/movies/search')
 def search_movies():
     keyword = request.args.get("keyword")
+    dict_results = []
     if keyword is not None and len(keyword):
         keywords = keyword.split(" ")
         or_clause = []
@@ -25,8 +26,6 @@ def search_movies():
                     "title": {"$regex": ".*"+keyword+".*", "$options": "i"}
                 })
         query = { "$or": or_clause }
-        print query
         results = Movie.find(query, limit=10)
-        print results
         dict_results = [result.to_dict() for result in results]
-        return jsonify(dict_results)
+    return jsonify(dict_results)
