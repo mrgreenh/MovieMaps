@@ -12,10 +12,6 @@ import {GoogleMapLoader, GoogleMap, Marker} from "react-google-maps";
 */
 class App extends React.Component{
 
-    onSearchChange(newValue){
-        this.props.searchMovie(newValue);
-    }
-
     render(){
         return (            
             <div className="component-app">
@@ -23,7 +19,7 @@ class App extends React.Component{
                 <AutoComplete
                   hintText="E.g. Forrest"
                   dataSource={this.props.autocompletion}
-                  onUpdateInput={this.onSearchChange}
+                  onUpdateInput={this.props.searchMovies}
                   floatingLabelText="Search for a movie!"
                   fullWidth={true}
                   onNewRequest={this.props.addMovie}
@@ -71,7 +67,7 @@ export default connect(App, {
     getProps(){
         return {
             autocompletion: MoviesStore.state.autocompletion,
-            searchMovie: MoviesStore.searchMovie,
+            searchMovies: MoviesStore.searchMovies,
             addMovie: MoviesActions.addMovie
         }
     }

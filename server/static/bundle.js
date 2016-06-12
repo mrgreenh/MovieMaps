@@ -20433,11 +20433,6 @@
 	    }
 	
 	    (0, _createClass3.default)(App, [{
-	        key: 'onSearchChange',
-	        value: function onSearchChange(newValue) {
-	            this.props.searchMovie(newValue);
-	        }
-	    }, {
 	        key: 'render',
 	        value: function render() {
 	            return _react2.default.createElement(
@@ -20451,7 +20446,7 @@
 	                _react2.default.createElement(_AutoComplete2.default, {
 	                    hintText: 'E.g. Forrest',
 	                    dataSource: this.props.autocompletion,
-	                    onUpdateInput: this.onSearchChange,
+	                    onUpdateInput: this.props.searchMovies,
 	                    floatingLabelText: 'Search for a movie!',
 	                    fullWidth: true,
 	                    onNewRequest: this.props.addMovie,
@@ -20501,7 +20496,7 @@
 	    getProps: function getProps() {
 	        return {
 	            autocompletion: _MoviesStore2.default.state.autocompletion,
-	            searchMovie: _MoviesStore2.default.searchMovie,
+	            searchMovies: _MoviesStore2.default.searchMovies,
 	            addMovie: _MoviesActions2.default.addMovie
 	        };
 	    }
