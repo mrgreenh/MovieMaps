@@ -1,0 +1,21 @@
+$search-box-height: 72px;
+
+.component-search-pane {
+    box-sizing: content-box;
+    flex-basis: 300px;
+    display: flex;
+    flex-direction: column;
+
+    .search-field {
+        width: 90%;
+        margin: 0px auto;
+        box-sizing: content-box;
+        flex-basis: $search-box-height;
+        height: $search-box-height;
+    }
+
+    .movies-list-container {
+        flex-grow: 1;
+        overflow: scroll;
+    }
+}
