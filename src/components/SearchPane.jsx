@@ -55,7 +55,7 @@ class SearchPane extends React.Component{
                             onChange={this.handleChange.bind(this)}/>
                         <Toggle
                             className="selected-only-toggle"
-                            label="Show selected"
+                            label="Show selected movies"
                             toggled={this.props.selectedOnly}
                             labelPosition="left"
                             onToggle={this.handleFilterChange.bind(this)}/>
