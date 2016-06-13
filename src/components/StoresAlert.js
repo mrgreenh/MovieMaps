@@ -32,7 +32,7 @@ class StoresAlert extends React.Component{
                 <Dialog
                   actions={actions}
                   modal={false}
-                  style={{width: 200}}
+                  width={200}
                   open={this.props.alert}
                   onRequestClose={this.handleClose}>
                   Sorryyyyyy, there has been a technical problem!

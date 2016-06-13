@@ -11,37 +11,43 @@ class MovieDialog extends React.Component{
     getActors(){
         var actors = this.props.actors;
         if(actors && actors.length) return [
-                "starring ",
-                ...actors.map((a) => <em>{a}</em>)
+                "Starring ",
+                <em>{actors.join(", ")}.</em>
             ];
     }
 
     getLocations(){
         var locations = this.props.locations;
         if(locations && locations.length) return [
-                "Filmed in: ",
+                <p>Filmed in: </p>,
                 <ul>
-                    {locations.map((a) => <li>{a}</li>)}
+                    {locations.map((a) => <li key={a}>{a}</li>)}
                 </ul>
             ];
+        else return <p><em>No locations available for this movie.</em></p>;
     }    
+
+    handleClose(){
+        this.props.close();
+    }
 
     render(){
         var actions = <RaisedButton
                             label="Thanks!"
                             primary={true}
                             keyboardFocused={true}
-                            onMouseUp={this.props.close}/>
+                            onMouseUp={this.handleClose.bind(this)}/>
 
         return <Dialog
                   actions={actions}
-                  style={{width: 200}}
+                  width={300}
+                  modal={false}
                   open={!!this.props.title}
-                  onRequestClose={this.props.close}>
+                  onRequestClose={this.handleClose.bind(this)}>
                     <h1>{this.props.title}</h1>
                     <p>Released in {this.props.release_year} by {this.props.production_company}.</p>
                     <p>{this.getActors()}</p>
-                    <p>{this.getLocations()}</p>
+                    {this.getLocations()}
                 </Dialog>;
     }
 

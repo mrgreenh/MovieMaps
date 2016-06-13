@@ -11,5 +11,6 @@ export default alt.generateActions(
         "toggleMovie",
         "loadedNewPage",
         "showMovieInfo",
-        "closeMovieInfo"
+        "closeMovieInfo",
+        "toggleFilter"
         );

@@ -14,7 +14,8 @@ class MoviesStore {
             autocompletion: [],
             queriedPage: -1, //-1 means no page has been queried yet
             mappedMoviesIds: [],
-            exploredMovieId: undefined
+            exploredMovieId: undefined,
+            selectedOnly: false
         };
 
         this.bindAction(AppActions.DISMISS_ERROR, this.onDismissError);
@@ -77,10 +78,20 @@ class MoviesStore {
         this.state.exploredMovieId = undefined;
     }
 
+    onToggleFilter(){
+        this.state.selectedOnly = !this.state.selectedOnly;
+    }
+
     //Getters
 
     getAutocompletionValues(){
-        return this.state.error ? [] : this.state.autocompletion;
+        if(this.state.error)
+            return [];
+        else if(this.state.selectedOnly)
+            return this.state.autocompletion.filter((v) => {
+                return this.state.mappedMoviesIds.indexOf(v._id) > -1;
+            }, this);
+        else return this.state.autocompletion;
     }
 
     getLocationMarkers(){

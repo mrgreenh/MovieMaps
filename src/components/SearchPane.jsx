@@ -9,6 +9,7 @@ import debounce from 'lodash.debounce';
 import './SearchPane.scss'
 import ReactDOM from 'react-dom';
 import MoviesList from './MoviesList.jsx';
+import Toggle from 'material-ui/Toggle'
 
 class SearchPane extends React.Component{
 
@@ -20,21 +21,32 @@ class SearchPane extends React.Component{
         this.props.searchMovies(e.target.value);
     }
 
+    handleFilterChange(){
+        this.props.toggleFilter();
+    }
+
     handleScroll(e){
         var listRect = this.moviesList.getBoundingClientRect();
         var containerRect = e.currentTarget.getBoundingClientRect();
         var scrollToBottom = Math.abs(listRect.bottom - containerRect.height);
-        if(listRect.bottom - containerRect.height < 100)
+        if(listRect.bottom - containerRect.height < 150)
             this.props.loadNewPage();
     }
 
     render(){
         return (<aside className="component-search-pane">
-                    <TextField
-                        className="search-field"
-                        hintText="E.g. Forrest Gump"
-                        floatingLabelText="Search for a movie!"
-                        onChange={this.handleChange.bind(this)}/>
+                    <div className="movies-list-controls">
+                        <TextField
+                            fullWidth={true}
+                            hintText="E.g. Forrest Gump"
+                            floatingLabelText="Search for a movie!"
+                            onChange={this.handleChange.bind(this)}/>
+                        <Toggle
+                            label="Show selected"
+                            toggled={this.props.selectedOnly}
+                            labelPosition="left"
+                            onToggle={this.handleFilterChange.bind(this)}/>
+                    </div>
                     <List className="movies-list-container" onScroll={this.handleScroll.bind(this)}>
                         <MoviesList
                          moviesListRef={(c) => 
@@ -72,7 +84,9 @@ export default connect(SearchPane, {
                 MoviesActions.toggleMovie(id);
                 LocationsStore.listForMovie(id);
             },
-            showMovieInfo: MoviesActions.showMovieInfo
+            showMovieInfo: MoviesActions.showMovieInfo,
+            toggleFilter: MoviesActions.toggleFilter,
+            selectedOnly: MoviesStore.state.selectedOnly
         }
     }
 });

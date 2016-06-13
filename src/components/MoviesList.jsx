@@ -32,6 +32,7 @@ class MoviesList extends React.Component{
                                                 color={grey400}/>
                                         </IconButton>
                         var checkbox = <Checkbox 
+                                        disabled={!(value.locations && value.locations.length)}
                                         checked={this.props.mappedMoviesIds.indexOf(value._id) > -1}
                                         onCheck={this.handleToggle.bind(this, value._id)}/>;
                         return <ListItem
