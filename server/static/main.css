@@ -1,14 +1,2 @@
-.component-movies-list .movie-list-item {
-  font-family: Roboto, sans-serif;
-  overflow: hidden; }
-  .component-movies-list .movie-list-item .movie-info-button {
-    -webkit-transition: opacity 0.5s;
-    -moz-transition: opacity 0.5s;
-    -ms-transition: opacity 0.5s;
-    -o-transition: opacity 0.5s;
-    transition: opacity 0.5s;
-    opacity: 0; }
-  .component-movies-list .movie-list-item:hover .movie-info-button {
-    opacity: 1; }
-
+body{background-color:#fff;margin:0;padding:0}.component-app{position:fixed;top:0;bottom:0;width:100%;display:flex;flex-direction:row;align-items:stretch}.component-map{flex-grow:1;position:relative}.component-search-pane{flex-basis:300px;overflow:hidden;position:relative}.component-search-pane .movies-list-controls{-ms-box-shadow:0 0 7px #ccc;-o-box-shadow:0 0 7px #ccc;box-shadow:0 0 7px #ccc;width:265px;position:absolute;top:0;height:150px;padding:17px;border-bottom:1px solid #ddd;flex-basis:auto;background-color:#fff}.component-search-pane .movies-list-controls .selected-only-toggle{margin-top:10px}.component-search-pane .movies-list-controls h1{margin:0 0 20 10px;color:#ff5252;font-family:Roboto,sans-serif}.component-search-pane .movies-list-controls .title-icon,.component-search-pane .movies-list-controls h1{display:inline-block;vertical-align:middle}.component-search-pane .movies-list-container{position:absolute;bottom:0;top:150px;padding-top:20px;overflow:scroll}.component-movies-list .movie-list-item{font-family:Roboto,sans-serif;overflow:hidden}.component-movies-list .movie-list-item .movie-info-button{-webkit-transition:opacity .5s;transition:opacity .5s;opacity:0}.component-movies-list .movie-list-item:hover .movie-info-button{opacity:1}.component-movie-dialog ul{list-style-type:square}
 /*# sourceMappingURL=main.css.map*/
