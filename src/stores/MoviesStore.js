@@ -3,6 +3,7 @@ import MoviesActions from '../actions/MoviesActions.js';
 import AppActions from '../actions/AppActions.js';
 import MovieSources from '../sources/MovieSources.js';
 import LocationsStore from './LocationsStore.js';
+import {PAGE_SIZE} from '../utils/Constants.js';
 
 class MoviesStore {
     constructor(){
@@ -80,6 +81,8 @@ class MoviesStore {
 
     onToggleFilter(){
         this.state.selectedOnly = !this.state.selectedOnly;
+        this.queriedPage = 0;
+        this.state.autocompletion = this.state.autocompletion.slice(0, PAGE_SIZE);
     }
 
     //Getters

@@ -71,7 +71,7 @@ def ingest_movies_data():
     normalized_movies = {}
     normalized_locations = Set()
     for location in result:
-        location_title = location.get("title")
+        location_title = location.get("title").strip().lower()
 
         if location_title not in normalized_movies:
             movie = Movie(location)

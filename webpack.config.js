@@ -3,6 +3,12 @@ var path = require('path');
 var nodeModulesPath = path.resolve(__dirname, 'node_modules');
 var ExtractTextPlugin = require("extract-text-webpack-plugin");
 
+// new Webpack.DefinePlugin({
+//   "process.env": { 
+//      NODE_ENV: JSON.stringify("production") 
+//    }
+// })
+
 var plugins = [
         new ExtractTextPlugin("./server/static/main.css"),
 //        new Webpack.optimize.UglifyJsPlugin({compress: { warnings: false } })
@@ -32,5 +38,6 @@ var config = {
     },
     plugins: plugins
 };
+
 
 module.exports = config;

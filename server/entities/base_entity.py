@@ -1,7 +1,8 @@
 from server.db_utils import get_db
 from bson import ObjectId
 
-PAGE_SIZE = 50
+#TODO pass this down to the frontend so that Constants.js doesn't have to be kept in sync
+PAGE_SIZE = 20
 
 class BaseEntity(object):
 

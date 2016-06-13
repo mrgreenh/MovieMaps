@@ -1,5 +1,6 @@
 import MoviesActions from '../actions/MoviesActions.js';
 import axios from 'axios';
+import {PAGE_SIZE} from '../utils/Constants.js'
 
 function find(state, page){
     return axios.get('/movies/search', {
@@ -19,7 +20,7 @@ const MovieSources = {
         remote: (state) => { return find(state, state.queriedPage + 1); },
 
         shouldFetch: (state) => {
-            if(state.autocompletion.length % 50 != 0)
+            if(state.autocompletion.length % PAGE_SIZE != 0 || state.loading)
                 //Some page was not complete, no more data
                 return false;
             else return true;

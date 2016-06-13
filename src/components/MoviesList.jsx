@@ -25,12 +25,13 @@ class MoviesList extends React.Component{
     render(){
         return (<List ref={this.props.moviesListRef} className="component-movies-list">
                     {this.props.listValues.map(value => {
-                        var infoButton = <IconButton
-                                                className="movie-info-button"
-                                                onClick={this.handleInfoClick.bind(this, value._id)}>
-                                            <ActionInfo
-                                                color={grey400}/>
-                                        </IconButton>
+
+                        var infoButton =    <IconButton
+                                            className="movie-info-button"
+                                            onClick={this.handleInfoClick.bind(this, value._id)}>
+                                                <ActionInfo color={grey400}/>
+                                            </IconButton>
+
                         var checkbox = <Checkbox 
                                         disabled={!(value.locations && value.locations.length)}
                                         checked={this.props.mappedMoviesIds.indexOf(value._id) > -1}
