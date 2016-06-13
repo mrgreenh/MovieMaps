@@ -3,7 +3,7 @@ MovieMaps
 
 This is my implementation of the **SF Movies** project with a **Full Stack** focus.
 Project is hosted on [Heroku](http://moviemaps.heroku.com/).
-App is tested on Chrome, Safari and Firefox latest versions. The stack in general can support older browsers down to IE9 with some small adaptations (e.g. css flexbox).
+App is tested on Chrome, Safari and Firefox latest versions and is intended for use on desktop. The stack in general can support older browsers down to IE9 with some small adaptations (e.g. css flexbox).
 
 Backend
 ==================================
@@ -78,3 +78,5 @@ Add more ReactProps validations to the various components in the frontend in gen
 Also, the components I wrote became too big. Most of them can be further split into smaller, agnostic components.
 
 Improve the script for resolving addresses as right now it is getting some wrong. Make the movies ingest incremental too.
+
+Improve the UX. For example the user has no clue why a checkbox in the movies list is greyed out (because there are no locations). Also the labelling of the map is definitely not the best and **a legend should be shown** in the movies list, next to the name of the movies showing up in the app.
