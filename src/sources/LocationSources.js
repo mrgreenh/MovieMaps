@@ -7,6 +7,11 @@ function list(state, movieId){
 }
 
 const LocationSources = {
+    /*Configuration for remote endpoint.
+    *Implements a caching mechanism to avoid
+    *contacting the server again for the same movie locations.
+    *@method listForMovie
+    */
     listForMovie: {
         remote: list,
 
@@ -15,7 +20,7 @@ const LocationSources = {
             if(!movieModel || !movieModel.locations) return false;
             var locations = movieModel.locations;
             for(var i in locations){
-                if(!state.locations.has(locations[i]))
+                if(!state.locationsByString.has(locations[i]))
                     return true;
             }
             return false;

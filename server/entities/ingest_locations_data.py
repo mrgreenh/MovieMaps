@@ -67,8 +67,10 @@ def ingest_locations_data(locations, limit=None):
 def cleanup_location(location):
     """
     Location string cleanup... Based on "euristics"...
+    Parameters:
+        - location (The string to clanup)
     """
-
+    #TODO fix this as it's breaking legitimate addresses like "Some St. at Some Other St."
     location = location.replace(" at ", ", ")
 
     sep_char = "<!>"

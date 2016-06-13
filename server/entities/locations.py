@@ -14,10 +14,16 @@ class Location(BaseEntity):
 
     @property
     def lat(self):
+        """
+        Returns location.lat from google's response format.
+        """
         return self.geocoding.get("geometry", {}).get("location", {}).get("lat")
 
     @property
     def lng(self):
+        """
+        Returns location.lng from google's response format.
+        """
         return self.geocoding.get("geometry", {}).get("location", {}).get("lng")
 
     def to_dict(self):
@@ -28,11 +34,6 @@ class Location(BaseEntity):
                     "lng": self.lng
                 })
         return result
-
-    @classmethod
-    def find(klass, *args, **kwargs):
-        kwargs["sort"] = "title"
-        return super(Location, klass).find(*args, **kwargs)
 
     @classmethod
     def ingest_locations_data(klass, *args, **kwargs):

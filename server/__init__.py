@@ -11,6 +11,11 @@ app = Flask(__name__)
 
 @app.route('/')
 def index():
+    """
+    Serves the page. Needs an env variable GOOGLE_MAPS_KEY to be configured.
+    This way you can have one key accepting calls from localhost
+    staying hidden on development.
+    """
     #Want to use a different one locally
     GOOGLE_MAPS_KEY = os.environ.get('GOOGLE_MAPS_KEY')
     if not GOOGLE_MAPS_KEY:
@@ -19,6 +24,12 @@ def index():
 
 @app.route('/movies/search')
 def search_movies():
+    """
+    Search movies by keyword. Implements pagination.
+    Parameters:
+        - keyword
+        - page
+    """
     keyword = request.args.get("keyword")
     page_arg = request.args.get("page")
     page = int(page_arg) if page_arg else None
@@ -37,6 +48,11 @@ def search_movies():
 
 @app.route('/movie/<movie_id>/locations/list')
 def list_movie_locations(movie_id):
+    """
+    Given the movie id, returns its locations as they were resolved by google maps.
+    Parameters:
+        - movie_id
+    """
     movie = Movie.get(movie_id)
     dict_results = []
     if movie and movie.locations and len(movie.locations):

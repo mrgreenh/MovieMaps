@@ -16,6 +16,7 @@ class Movie(BaseEntity):
         self.actors = Set(raw_data.get("actors"))
 
         #These follow the same schema found on the data source
+        #TODO could save some lines by just iterating over a list of "to_parse" keys
         self.title = raw_data.get("title", None)
         self.writer = raw_data.get("writer", None)
         self.director = raw_data.get("director", None)
@@ -24,17 +25,28 @@ class Movie(BaseEntity):
         self.release_year = raw_data.get("release_year", None)
 
     def add_location(self, raw_location_data):
+        """
+        Will add locations to the current model, normalizing them.
+        Parameters
+            - raw_location_data (An entry from https://data.sfgov.org/resource/wwmu-gmzc.json)
+        """
         if "locations" in raw_location_data:
             self.locations.add(raw_location_data.get("locations"))
 
 
     def add_actors(self, raw_location_data):
+        """
+        Will add actors to the current model, normalizing them.
+        Parameters
+            - raw_location_data (An entry from https://data.sfgov.org/resource/wwmu-gmzc.json)
+        """
         for k in ["actor_1", "actor_2", "actor_3"]:
             if k in raw_location_data:
                 self.actors.add(raw_location_data.get(k))
 
     def to_dict(self):
         result = super(Movie, self).to_dict()
+        #TODO could save some lines by just iterating over a list of "to_serialize" keys
         result.update({
                     "locations": list(self.locations),
                     "actors": list(self.actors),
@@ -49,6 +61,10 @@ class Movie(BaseEntity):
 
     @classmethod
     def find(klass, *args, **kwargs):
+        """
+        Behaves just like the method in BaseEntity,
+        however this will also sort the results by title.
+        """
         kwargs["sort"] = "title"
         return super(Movie, klass).find(*args, **kwargs)
 

@@ -5,7 +5,7 @@ var ExtractTextPlugin = require("extract-text-webpack-plugin");
 
 var plugins = [
         new ExtractTextPlugin("./server/static/main.css"),
-        //Remove these 2 following entries for development
+        // Remove these 2 following entries for development
         new Webpack.DefinePlugin({
           "process.env": { 
              NODE_ENV: JSON.stringify("production") 
