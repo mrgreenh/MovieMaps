@@ -33,7 +33,7 @@ The frontend code is compiled with webpack from ES6, JSX and SCSS. The sources a
 
 The code follows the Flux pattern. In this project I decided to use [Alt.js](http://alt.js.org/) because it removes most of the boilerplate usually needed for writing flux applications and it's the most coincise I have tried so far. Also it provides some really nice utilities for handling async calls, so that it makes it convenient to implement error handling and loading state in the stores. Stores fetch data via Sources, that in turn update stores via Actions. Models received from the server are parsed in both stores into a javascript Map {id: model} (the locations store also stores {string: model} for quick lookup).
 
-For the UI I wrote some custom (mostly higher order) components and then relied on the Material UI React library for most of the reusable components. Higher order components connect to stores via alt's connect, thus making it easier to refactor them into agnostic components should it become necessary. There hasn't been the chance to use a container component.
+For the UI I wrote some custom (mostly higher order) components and then relied on the Material UI React library for most of the reusable components. Also the map uses the 'react-google-maps' npm package. Higher order components connect to stores via alt's connect, thus making it easier to refactor them into agnostic components should it become necessary. There hasn't been the chance to use a container component.
 
 Each component with stilyng imports its own scss file. Every component importing a scss file sets by convention a class on its root element component-*, that is the class used at the root of its scss file. Scss files follow the same name as their components.
 
@@ -72,5 +72,9 @@ Todos
 First of all there are a few //TODOs left here and there in the code, so I would go through those.
 Definitely set up the tests in the frontend, and write some more tests in the backend too.
 **The Material UI library turned out to have some bugs, that are still left in the app**. Especially the "i" button next to each movie title only works on double click, and the second click event propagates to the list element so that the movie also gets unwillingly selected. These components need replacement.
-Add more ReactProps validations to the various components in the frontend in general. The frontend is also not well documented.
+
+Add more ReactProps validations to the various components in the frontend in general and document them, like I started doing [here](https://github.com/mrgreenh/MovieMaps/blob/master/src/components/SearchPane.jsx#L75-L81). Also the stores and actions need more documentation. The documentation syntax used can be compiled into a searchable documentation website by using for example YUI's parser in Gulp.
+
+Also, the components I wrote became too big. Most of them can be further split into smaller, agnostic components.
+
 Improve the script for resolving addresses as right now it is getting some wrong. Make the movies ingest incremental too.

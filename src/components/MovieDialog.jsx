@@ -6,6 +6,10 @@ import MoviesStore from '../stores/MoviesStore.js';
 import MoviesActions from '../actions/MoviesActions.js';
 import './MovieDialog.scss';
 
+/**
+*The dialog showing the details for a movie
+*@class MovieDialog
+*/
 class MovieDialog extends React.Component{
 
     getActors(){

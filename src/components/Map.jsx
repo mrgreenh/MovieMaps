@@ -9,6 +9,12 @@ import {getBoundingArea} from '../utils/GeographyUtils.js';
 import './Map.scss';
 
 //TODO shorten this file by pushing props to a module
+
+/**
+*Wrapper for the Map
+*@class Map
+*/
+
 class Map extends React.Component{
 
   handleCloseInfoWindow(locationId){

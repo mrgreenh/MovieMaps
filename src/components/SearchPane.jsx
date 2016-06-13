@@ -13,6 +13,10 @@ import Toggle from 'material-ui/Toggle'
 import AvMovie from 'material-ui/svg-icons/av/movie';
 import {redA200} from 'material-ui/styles/colors';
 
+/**
+*This is all the menu on the left
+*@class SearchPane
+*/
 class SearchPane extends React.Component{
 
     componentDidMount(){

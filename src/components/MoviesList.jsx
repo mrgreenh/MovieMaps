@@ -7,6 +7,10 @@ import ActionInfo from 'material-ui/svg-icons/action/info';
 import {grey400} from 'material-ui/styles/colors';
 import './MoviesList.scss';
 
+/**
+*List of movies on the left pane
+*@class MoviesList
+*/
 const iconStyle = {
     height: 18,
     width: 28,
