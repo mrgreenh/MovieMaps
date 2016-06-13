@@ -40,6 +40,10 @@ class StoresAlert extends React.Component{
                 <Snackbar
                   open={this.props.loading}
                   autoHideDuration={5000}
+                  bodyStyle={{
+                    fontFamily: "Roboto, sans-serif",
+                    textAlign: "center"
+                  }}
                   message="Loading..."/>
             </div>
         );

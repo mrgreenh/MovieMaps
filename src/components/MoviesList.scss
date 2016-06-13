@@ -2,13 +2,15 @@
 
 .component-movies-list {
     .movie-list-item{
+        font-family: Roboto, sans-serif;
+        overflow: hidden;
         .movie-info-button {
             @include vendor-prefix(transition, opacity .5s)
             opacity: 0;
         }
 
         &:hover .movie-info-button{
-            opacity:1
+            opacity:1;
         }
     }
 }

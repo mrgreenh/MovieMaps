@@ -1,49 +1,14 @@
-body {
-  background-color: #fff;
-  margin: 0px;
-  padding: 0px; }
-.component-app {
-  position: fixed;
-  top: 0px;
-  bottom: 0px;
-  width: 100%;
-  box-sizing: content-box;
-  display: flex;
-  flex-direction: row;
-  align-items: stretch; }
-  .component-app .right-side-container {
-    flex-grow: 1;
-    position: relative; }
-    .component-app .right-side-container h1 {
-      position: absolute;
-      top: 0px; }
-.component-search-pane {
-  box-sizing: content-box;
-  flex-basis: 300px;
-  display: flex;
-  flex-direction: column; }
-  .component-search-pane .movies-list-controls {
-    width: 265px;
-    padding: 17px;
-    border-bottom: solid 1px #ddd;
-    box-sizing: content-box; }
-  .component-search-pane .movies-list-container {
-    flex-grow: 1;
-    overflow: scroll; }
-.component-movies-list .movie-list-item .movie-info-button {
-  -webkit-transition: opacity 0.5s;
-  -moz-transition: opacity 0.5s;
-  -ms-transition: opacity 0.5s;
-  -o-transition: opacity 0.5s;
-  transition: opacity 0.5s;
-  opacity: 0; }
-
-.component-movies-list .movie-list-item:hover .movie-info-button {
-  opacity: 1; }
-.component-header {
-  position: absolute;
-  top: 0px;
-  height: 50px;
-  width: 100%; }
+.component-movies-list .movie-list-item {
+  font-family: Roboto, sans-serif;
+  overflow: hidden; }
+  .component-movies-list .movie-list-item .movie-info-button {
+    -webkit-transition: opacity 0.5s;
+    -moz-transition: opacity 0.5s;
+    -ms-transition: opacity 0.5s;
+    -o-transition: opacity 0.5s;
+    transition: opacity 0.5s;
+    opacity: 0; }
+  .component-movies-list .movie-list-item:hover .movie-info-button {
+    opacity: 1; }
 
 /*# sourceMappingURL=main.css.map*/

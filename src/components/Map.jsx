@@ -6,7 +6,9 @@ import MoviesStore from '../stores/MoviesStore';
 import LocationsStore from '../stores/LocationsStore';
 import LocationsActions from '../actions/LocationsActions.js';
 import {getBoundingArea} from '../utils/GeographyUtils.js';
+import './Map.scss';
 
+//TODO shorten this file by pushing props to a module
 class Map extends React.Component{
 
   handleCloseInfoWindow(locationId){
@@ -19,7 +21,9 @@ class Map extends React.Component{
               key={locationId}
               onCloseclick={this.handleCloseInfoWindow.bind(this, locationId)}>
               	<div>
-		              <h3>{markerData.locationName}</h3>
+		              <h3 style={{marginTop: 0, marginBottom: 10}}>
+                    {markerData.locationName}
+                  </h3>
 		              This place appears in <strong>{markerData.movieTitle}</strong>.
 	              </div>
             </InfoWindow>;
@@ -80,7 +84,7 @@ class Map extends React.Component{
 
   render(){
     return (
-      <section style={{height: "100%"}}>
+      <section className="component-map" style={{height: "100%"}}>
         <GoogleMapLoader
           containerElement={
             <div style={{height: "100%",}}></div>

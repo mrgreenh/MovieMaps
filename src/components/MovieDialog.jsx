@@ -4,7 +4,7 @@ import Dialog from 'material-ui/Dialog';
 import {connect} from 'alt-react';
 import MoviesStore from '../stores/MoviesStore.js';
 import MoviesActions from '../actions/MoviesActions.js';
-
+import './MovieDialog.scss';
 
 class MovieDialog extends React.Component{
 
@@ -39,15 +39,16 @@ class MovieDialog extends React.Component{
                             onMouseUp={this.handleClose.bind(this)}/>
 
         return <Dialog
-                  actions={actions}
-                  width={300}
-                  modal={false}
-                  open={!!this.props.title}
-                  onRequestClose={this.handleClose.bind(this)}>
-                    <h1>{this.props.title}</h1>
-                    <p>Released in {this.props.release_year} by {this.props.production_company}.</p>
-                    <p>{this.getActors()}</p>
-                    {this.getLocations()}
+                    className="component-movie-dialog"
+                    actions={actions}
+                    width={300}
+                    modal={false}
+                    open={!!this.props.title}
+                    onRequestClose={this.handleClose.bind(this)}>
+                        <h1>{this.props.title}</h1>
+                        <p>Released in {this.props.release_year} by {this.props.production_company}.</p>
+                        <p>{this.getActors()}</p>
+                        {this.getLocations()}
                 </Dialog>;
     }
 

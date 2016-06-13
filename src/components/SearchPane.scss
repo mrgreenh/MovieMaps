@@ -1,18 +1,47 @@
+@import './variables';
+
 .component-search-pane {
-    box-sizing: content-box;
+    $controls-height: 150px;
+
     flex-basis: 300px;
-    display: flex;
-    flex-direction: column;
+    overflow: hidden;
+    position: relative;
 
     .movies-list-controls {
+        $height: 100px;
+
+        @include vendor-prefix(box-shadow, 0px 0px 7px #ccc);
         width: 265px;
+        position: absolute;
+        top:0px;
+        height: $controls-height;
         padding: 17px;
         border-bottom: solid 1px #ddd;
-        box-sizing: content-box;
+        flex-basis: auto;
+        background-color: white;
+
+        .selected-only-toggle {
+            margin-top: 10px;
+        }
+
+        h1 {
+            margin:0 0 20 10px;
+            color: #FF5252;
+            font-family: Roboto, sans-serif;
+        }
+
+        h1, .title-icon {
+            display: inline-block;
+            vertical-align: middle;
+        }
+
     }
 
     .movies-list-container {
-        flex-grow: 1;
+        position: absolute;
+        bottom: 0px;
+        top: $controls-height;
+        padding-top: 20px;
         overflow: scroll;
     }
 }

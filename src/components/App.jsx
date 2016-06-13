@@ -4,7 +4,6 @@ import StoresAlert from './StoresAlert.js';
 import './App.scss';
 import Map from './Map.jsx';
 import SearchPane from './SearchPane.jsx';
-import Header from './Header.jsx';
 import MovieDialog from './MovieDialog.jsx';
 
 /**
@@ -17,10 +16,7 @@ class App extends React.Component{
         return (
             <div className="component-app">
                 <SearchPane />
-                <section className="right-side-container">
-                    <Map />
-                    <Header />
-                </section>
+                <Map />
                 <MovieDialog />
                 <StoresAlert />
             </div>
