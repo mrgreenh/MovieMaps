@@ -13,7 +13,8 @@ class MoviesStore {
             searchTerm: "",
             autocompletion: [],
             queriedPage: -1, //-1 means no page has been queried yet
-            mappedMoviesIds: []
+            mappedMoviesIds: [],
+            exploredMovieId: undefined
         };
 
         this.bindAction(AppActions.DISMISS_ERROR, this.onDismissError);
@@ -21,7 +22,8 @@ class MoviesStore {
         this.registerAsync(MovieSources);
         this.exportPublicMethods({
             getAutocompletionValues: this.getAutocompletionValues,
-            getLocationMarkers: this.getLocationMarkers
+            getLocationMarkers: this.getLocationMarkers,
+            getMovieInfo: this.getMovieInfo
         });
     }
 
@@ -67,6 +69,14 @@ class MoviesStore {
         else this.state.mappedMoviesIds.push(id);
     }
 
+    onShowMovieInfo(movieId){
+        this.state.exploredMovieId = movieId;
+    }
+
+    onCloseMovieInfo(){
+        this.state.exploredMovieId = undefined;
+    }
+
     //Getters
 
     getAutocompletionValues(){
@@ -86,12 +96,19 @@ class MoviesStore {
                             lat: locationModel.lat,
                             lng: locationModel.lng
                         },
+                        locationName: locationModel.search_string,
                         key: locationModel.search_string,
-                        movieTitle: movieModel.title
+                        movieTitle: movieModel.title,
+                        showInfo: LocationsStore.isInfoVisible(locationModel._id)
                     });
             })
             return result;
         }, new Map());
+    }
+
+    getMovieInfo(){
+        var exploredMovieId = this.state.exploredMovieId;
+        if(exploredMovieId) return this.state.movies.get(exploredMovieId);
     }
 
 }

@@ -9,5 +9,7 @@ export default alt.generateActions(
         "loadingError",
         "changeSearchTerm",
         "toggleMovie",
-        "loadedNewPage"
+        "loadedNewPage",
+        "showMovieInfo",
+        "closeMovieInfo"
         );

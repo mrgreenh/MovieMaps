@@ -11,8 +11,6 @@ def get_db():
     if not DB_NAME:
         DB_NAME = 'test'
 
-    logging.info('Connecting to database')
-
     client = MongoClient(MONGO_URL)
 
     db = client[DB_NAME]

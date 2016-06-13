@@ -4,8 +4,8 @@ import StoresAlert from './StoresAlert.js';
 import './App.scss';
 import Map from './Map.jsx';
 import SearchPane from './SearchPane.jsx';
-import Legend from './Legend.jsx';
 import Header from './Header.jsx';
+import MovieDialog from './MovieDialog.jsx';
 
 /**
 *The root component containing the rest of the application
@@ -20,8 +20,8 @@ class App extends React.Component{
                 <section className="right-side-container">
                     <Map />
                     <Header />
-                    <Legend />
                 </section>
+                <MovieDialog />
                 <StoresAlert />
             </div>
         );

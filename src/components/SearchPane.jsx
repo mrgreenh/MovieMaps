@@ -32,7 +32,7 @@ class SearchPane extends React.Component{
         return (<aside className="component-search-pane">
                     <TextField
                         className="search-field"
-                        hintText="E.g. Forrest"
+                        hintText="E.g. Forrest Gump"
                         floatingLabelText="Search for a movie!"
                         onChange={this.handleChange.bind(this)}/>
                     <List className="movies-list-container" onScroll={this.handleScroll.bind(this)}>
@@ -41,7 +41,8 @@ class SearchPane extends React.Component{
                             this.moviesList = ReactDOM.findDOMNode(c)}
                          listValues={this.props.listValues}
                          mappedMoviesIds={this.props.mappedMoviesIds}
-                         onToggle={this.props.toggleMovie}/>
+                         onToggle={this.props.toggleMovie}
+                         onInfoClick={this.props.showMovieInfo}/>
                     </List>
                 </aside>);
     }
@@ -70,7 +71,8 @@ export default connect(SearchPane, {
             toggleMovie: (id) => {
                 MoviesActions.toggleMovie(id);
                 LocationsStore.listForMovie(id);
-            }
+            },
+            showMovieInfo: MoviesActions.showMovieInfo
         }
     }
 });

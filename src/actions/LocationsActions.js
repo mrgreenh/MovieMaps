@@ -6,5 +6,7 @@ import alt from '../alt.js';
 export default alt.generateActions(
         "loading",
         "loadedLocations",
-        "loadingError"
+        "loadingError",
+        "showInfoWindow",
+        "hideInfoWindow"
         );

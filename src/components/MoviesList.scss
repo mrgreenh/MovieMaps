@@ -1,0 +1,14 @@
+@import './variables';
+
+.component-movies-list {
+    .movie-list-item{
+        .movie-info-button {
+            @include vendor-prefix(transition, opacity .5s)
+            opacity: 0;
+        }
+
+        &:hover .movie-info-button{
+            opacity:1
+        }
+    }
+}
