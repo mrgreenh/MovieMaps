@@ -25,14 +25,25 @@
         }
 
         h1 {
-            margin:0 0 20 10px;
             color: #FF5252;
             font-family: Roboto, sans-serif;
+            font-size:30px;
         }
 
         h1, .title-icon {
+            margin:0 0 20px;
             display: inline-block;
             vertical-align: middle;
+        }
+
+        .text-search-input {
+            left: 0;
+            opacity: 1;
+        }
+
+        &.showing-selected-only .text-search-input {
+            left: -400px;
+            opacity: 0;
         }
 
     }
@@ -42,6 +53,7 @@
         bottom: 0px;
         top: $controls-height;
         padding-top: 20px;
-        overflow: scroll;
+        overflow-y: scroll;
+        width: 100%;
     }
 }

@@ -35,7 +35,7 @@ class StoresAlert extends React.Component{
                   width={200}
                   open={this.props.alert}
                   onRequestClose={this.handleClose}>
-                  Sorryyyyyy, there has been a technical problem!
+                  Sorryyyyyy, there has been a technical problem! Try again later?
                 </Dialog>
                 <Snackbar
                   open={this.props.loading}

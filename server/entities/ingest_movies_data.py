@@ -38,7 +38,7 @@ def ingest_movies_data(klass):
 
     #Clean start for movies since we get the same collection every time
     #Since we don't need bookkeeping, better to write the whole thing in one shot
-    #TODO add support for incremental changes if you want to support things like
+    #TODO add support for incremental changes like in ingest_locations_data.py if you want to support things like
     #user bookmarking and such
     db = get_db()
     db.movies.drop()

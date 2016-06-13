@@ -36,6 +36,11 @@ class SearchPane extends React.Component{
     }
 
     render(){
+        var selectedOnlyClassname = this.props.selectedOnly ? " showing-selected-only" : "";
+        var textInputStyleOverride = {
+            transition: "height 200ms cubic-bezier(0.23, 1, 0.32, 1) 0ms, left .5s, opacity .5s"
+        }
+
         return (<aside className="component-search-pane">
                     <div className="movies-list-container" onScroll={this.handleScroll.bind(this)}>
                         <MoviesList
@@ -46,10 +51,12 @@ class SearchPane extends React.Component{
                          onToggle={this.props.toggleMovie}
                          onInfoClick={this.props.showMovieInfo}/>
                     </div>
-                    <header className="movies-list-controls">
-                        <AvMovie color={redA200}className="title-icon"/><h1>MovieMaps</h1>
+                    <header className={`movies-list-controls${selectedOnlyClassname}`}>
+                        <AvMovie color={redA200} style={{width:30, height: 30}} className="title-icon"/><h1>MovieMaps</h1>
                         <TextField
                             fullWidth={true}
+                            style={textInputStyleOverride}
+                            className="text-search-input"
                             inputStyle={{marginTop:0}}
                             hintText="Search for movies here."
                             onChange={this.handleChange.bind(this)}/>
