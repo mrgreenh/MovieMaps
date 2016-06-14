@@ -1,8 +1,8 @@
-MovieMaps
+MovieMaps ([See it here](http://moviemaps.heroku.com/))
 ==================================
 
 This is my implementation of the **SF Movies** project with a **Full Stack** focus.
-Project is hosted on [Heroku](http://moviemaps.heroku.com/).
+Project is hosted on [Heroku](http://moviemaps.heroku.com/). It's all relying on free plans, so first page load will take a while.
 App is tested on Chrome, Safari and Firefox latest versions and is intended for use on desktop. The stack in general can support older browsers down to IE9 with some small adaptations (e.g. css flexbox).
 
 Backend
